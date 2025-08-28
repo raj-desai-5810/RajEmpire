@@ -1,0 +1,164 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Welcome RajEmpire</title>
+
+  <!-- Fonts & Icons -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/7.0.0/css/all.min.css">
+  <style>
+    @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700&display=swap');
+
+    :root {
+      --primary: #2cd734;
+      --primary-dark: #23cc4e;
+      --black: #111;
+      --gray: #555;
+      --bg-light: #fdfdfd;
+    }
+
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+
+    body {
+      font-family: 'Poppins', sans-serif;
+      background: linear-gradient(135deg, #f0f9ff, #ffffff, #e8ffe8);
+      min-height: 100vh;
+      overflow: hidden;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      text-align: center;
+      position: relative;
+    }
+
+    /* Animated Background Circles */
+    .bubble {
+      position: absolute;
+      border-radius: 50%;
+      background: rgba(44, 215, 52, 0.15);
+      animation: float 20s infinite ease-in-out;
+    }
+
+    .bubble:nth-child(1) { width: 200px; height: 200px; top: 10%; left: 15%; animation-duration: 18s; }
+    .bubble:nth-child(2) { width: 300px; height: 300px; top: 60%; left: 70%; animation-duration: 22s; }
+    .bubble:nth-child(3) { width: 150px; height: 150px; top: 30%; left: 80%; animation-duration: 25s; }
+    .bubble:nth-child(4) { width: 250px; height: 250px; top: 70%; left: 20%; animation-duration: 28s; }
+
+    @keyframes float {
+      0%   { transform: translateY(0) scale(1); opacity: 0.5; }
+      50%  { transform: translateY(-60px) scale(1.1); opacity: 1; }
+      100% { transform: translateY(0) scale(1); opacity: 0.5; }
+    }
+
+    /* Hero Content */
+    .hero {
+      position: relative;
+      z-index: 10;
+      padding: 0 20px;
+    }
+
+    .logo {
+      font-size: 3rem;
+      font-weight: 900;
+      margin-bottom: 10px;
+      animation: slideDown 1.5s ease forwards;
+    }
+
+    .logo i {
+      color: var(--primary);
+      margin-right: 4px;
+    }
+
+    .logo .raj { color: var(--black); }
+    .logo .empire { color: var(--primary); }
+
+    @keyframes slideDown {
+      0% { transform: translateY(-50px); opacity: 0; }
+      100% { transform: translateY(0); opacity: 1; }
+    }
+
+    .tagline {
+      font-size: 1.3rem;
+      color: var(--gray);
+      margin-bottom: 30px;
+      animation: fadeIn 2s ease 0.8s forwards;
+      opacity: 0;
+    }
+
+    @keyframes fadeIn {
+      to { opacity: 1; }
+    }
+
+    .paragraphs {
+      max-width: 700px;
+      margin: 0 auto 40px;
+      font-size: 1rem;
+      line-height: 1.7;
+      color: #333;
+      animation: fadeUp 2s ease 1.2s forwards;
+      opacity: 0;
+    }
+
+    .paragraphs p{
+      text-align: justify;
+      margin: 1rem 0;
+    }
+
+    @keyframes fadeUp {
+      0% { transform: translateY(40px); opacity: 0; }
+      100% { transform: translateY(0); opacity: 1; }
+    }
+
+    /* Glowing Button */
+    .btn-empire {
+      background: var(--primary);
+      color: #fff;
+      font-size: 1.2rem;
+      font-weight: 600;
+      padding: 14px 36px;
+      border: none;
+      border-radius: 40px;
+      cursor: pointer;
+      box-shadow: 0 0 20px rgba(44, 215, 52, 0.5);
+      transition: 0.3s;
+      animation: pulse 2s infinite;
+    }
+
+    .btn-empire:hover {
+      background: var(--primary-dark);
+      transform: translateY(-3px) scale(1.05);
+      box-shadow: 0 0 35px rgba(44, 215, 52, 0.7);
+    }
+
+    @keyframes pulse {
+      0% { box-shadow: 0 0 10px rgba(44,215,52,0.4); }
+      50% { box-shadow: 0 0 25px rgba(44,215,52,0.7); }
+      100% { box-shadow: 0 0 10px rgba(44,215,52,0.4); }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- Animated Background -->
+  <div class="bubble"></div>
+  <div class="bubble"></div>
+  <div class="bubble"></div>
+  <div class="bubble"></div>
+
+  <!-- Hero Content -->
+  <div class="hero">
+    <div class="logo">
+      <i class="fa-solid fa-crown"></i> 
+      <span class="raj">Raj</span><span class="empire">Empire</span>
+    </div>
+    <div class="tagline">My World, My Work, My Legacy</div>
+    <div class="paragraphs">
+      <p>Welcome to RajEmpire — a space where my journey is documented, my projects come to life, and every detail of my growth is preserved.</p>
+      <p>Here you’ll find my personal info, daily work logs, creative projects, and ways to connect with me. This is more than a profile; it’s my digital empire — built to grow, evolve, and inspire.</p>
+    </div>
+    <button class="btn-empire">Enter Empire</button>
+  </div>
+
+</body>
+</html>
