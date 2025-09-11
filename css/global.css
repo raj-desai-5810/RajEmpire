@@ -1,0 +1,94 @@
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700&display=swap');
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    scroll-behavior: smooth;
+}
+
+:root {
+    /* Global Variables */
+    --primary: #6155D9;
+    --secondery: #BD45F8;
+    --bg-light: #f9fafb;
+    --pri-grade: linear-gradient(to top left, var(--primary), var(--secondery));
+    --black: #222;
+    --ink: #1f2937;
+}
+
+html {
+    height: 100%;
+    width: 100%;
+}
+
+body {
+    height: 100%;
+    width: 100%;
+    font-family: 'Poppins', sans-serif !important;
+    background: var(--bg-light);
+}
+
+
+/* Reset Bootstrap Focus */
+.form-control {
+    border-radius: 10px;
+    border: 1px solid #d1d5db;
+    padding: 12px 14px;
+    transition: .3s;
+    cursor: pointer;
+}
+
+.form-control:focus {
+    border-color: var(--primary);
+    box-shadow: 0 0 0 5px #6155d926;
+}
+
+/* Primary Button for Empire */
+.main-btn {
+    padding: 14px 36px;
+    border-radius: 50px;
+    border: none;
+    cursor: pointer;
+    background: var(--pri-grade);
+    color: #fff;
+    font-weight: 600;
+    font-size: 1rem;
+    letter-spacing: 0.5px;
+    transition: all 0.35s ease;
+    position: relative;
+    z-index: 1;
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
+}
+
+.main-btn:hover {
+    transform: translateY(-3px) scale(1.03);
+    box-shadow: 0 8px 25px rgba(0, 0, 0, 0.3);
+    filter: brightness(1.1);
+}
+
+.main-btn:active {
+    transform: scale(0.97);
+    box-shadow: 0 3px 10px rgba(0, 0, 0, 0.25);
+}
+
+.disable-btn {
+    background: linear-gradient(to top left, #6055d982, #bc45f882);
+    padding: 14px 36px;
+    border-radius: 50px;
+    border: none;
+    cursor: progress;
+    color: #fff;
+    font-weight: 600;
+    font-size: 1rem;
+    letter-spacing: 0.5px;
+    transition: all 0.35s ease;
+    position: relative;
+    z-index: 1;
+}
+
+.logo {
+    background-image: linear-gradient(to right, #ff00cc, #3333ff);
+    background-clip: text;
+    -webkit-text-fill-color: transparent;
+}
