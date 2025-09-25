@@ -1,0 +1,456 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width,initial-scale=1" />
+<title>Raj Empire — Roles</title>
+
+<!-- Font Awesome -->
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css"/>
+
+<!-- Your theme -->
+<link rel="stylesheet" href="css/global.css">
+
+<style>
+  /* Page-specific styles (keeps harmony with your global.css variables) */
+  :root {
+    --container: 1200px;
+  }
+
+  body {
+    font-family: 'Poppins', sans-serif;
+    -webkit-font-smoothing:antialiased;
+    -moz-osx-font-smoothing:grayscale;
+  }
+
+  /* ---------- NAVBAR ---------- */
+  .navbar {
+    display:flex;
+    justify-content:space-between;
+    align-items:center;
+    padding: 12px 36px;
+    background: var(--card-bg-light);
+    box-shadow: 0 6px 20px var(--card-shadow-light);
+    position: sticky;
+    top:0;
+    z-index:1200;
+  }
+  .logo {
+    display:flex;
+    align-items:center;
+    gap:12px;
+    font-weight:700;
+    font-size:1.35rem;
+    background: var(--pri-grade);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+  }
+
+  .nav-right {
+    display:flex;
+    align-items:center;
+    gap:18px;
+  }
+
+  .menu {
+    display:flex;
+    gap:18px;
+    align-items:center;
+  }
+  .menu a {
+    color: var(--primary);
+    text-decoration:none;
+    font-weight:600;
+    display:flex;
+    gap:8px;
+    align-items:center;
+    transition: transform .22s ease, color .22s ease;
+  }
+  .menu a:hover { transform: translateY(-2px); color: var(--secondery); }
+
+  /* visible always: dark toggle near hamburger */
+  #darkToggle {
+    font-size:1.35rem;
+    cursor:pointer;
+    color:var(--primary);
+    transition: transform .22s ease, color .22s ease;
+    margin-left:6px;
+  }
+  #darkToggle:hover { transform: scale(1.15); color: var(--secondery); }
+
+  .hamburger {
+    font-size:1.4rem;
+    cursor:pointer;
+    color:var(--primary);
+    display:none;
+    margin-left:8px;
+  }
+
+  /* ---------- HERO ---------- */
+  .hero {
+    max-width: var(--container);
+    margin: 40px auto 10px;
+    padding: 0 20px;
+    display:flex;
+    gap:40px;
+    align-items:flex-start;
+  }
+
+  .hero-left {
+    flex: 1;
+    min-width: 280px;
+  }
+  .hero-right {
+    flex: 1;
+    min-width: 300px;
+  }
+
+  .page-title {
+    font-size:2.4rem;
+    line-height:1.05;
+    margin-bottom:12px;
+    background: var(--pri-grade);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+  }
+  .page-sub {
+    color: #6b6b8a;
+    margin-bottom:22px;
+  }
+
+  /* ---------- TIMELINE / ROLES ---------- */
+  .roles-wrap {
+    display:grid;
+    grid-template-columns: 60px 1fr;
+    gap: 20px 36px;
+    align-items:start;
+  }
+
+  /* vertical line column */
+  .timeline {
+    position:relative;
+    min-height: 100%;
+    display:flex;
+    justify-content:center;
+  }
+  .timeline::before{
+    content:'';
+    position:absolute;
+    top:0;
+    left:50%;
+    width:6px;
+    height:100%;
+    background: linear-gradient(to bottom, rgba(97,85,217,0.95), rgba(189,69,248,0.95));
+    border-radius:6px;
+    transform:translateX(-50%);
+    box-shadow: 0 6px 20px rgba(97,85,217,0.12), inset 0 0 10px rgba(255,255,255,0.02);
+  }
+
+  /* each role node */
+  .role-item {
+    position:relative;
+    margin: 22px 0;
+    opacity:0;
+    transform: translateY(18px) scale(.995);
+    transition: all 0.6s cubic-bezier(.2,.9,.3,1);
+    display:flex;
+    gap:18px;
+    align-items:flex-start;
+  }
+  .role-item.is-visible { opacity:1; transform: translateY(0) scale(1); }
+
+  .role-dot {
+    width:28px;
+    height:28px;
+    border-radius:50%;
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    color:#fff;
+    font-size:1rem;
+    z-index:4;
+    box-shadow: 0 6px 18px rgba(97,85,217,0.15);
+    background: var(--pri-grade);
+    transform: translateX(-50%); /* align on center line visually */
+  }
+
+  .role-card {
+    background: var(--card-bg-light);
+    border-radius:14px;
+    padding:18px 20px;
+    box-shadow: 0 8px 30px var(--card-shadow-light);
+    min-height:88px;
+    width:100%;
+    overflow:hidden;
+    transition: transform .28s ease, box-shadow .28s ease;
+    display:flex;
+    gap:14px;
+    align-items:flex-start;
+  }
+  .role-card:hover {
+    transform: translateY(-6px);
+    box-shadow: 0 18px 40px rgba(0,0,0,0.12);
+  }
+
+  .role-badge {
+    flex:0 0 86px;
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    border-radius:12px;
+    color:#fff;
+    font-weight:700;
+    text-align:center;
+    padding:8px;
+    box-shadow: 0 6px 18px rgba(0,0,0,0.06);
+  }
+
+  .role-content {
+    flex:1;
+  }
+  .role-title {
+    font-size:1.05rem;
+    font-weight:700;
+    margin-bottom:6px;
+  }
+  .role-desc {
+    color:#5b5b78;
+    line-height:1.35;
+    font-size:0.95rem;
+  }
+
+  /* gradients for badges (different per role) */
+  .g-admin { background: linear-gradient(135deg,#6155D9,#BD45F8); }
+  .g-family { background: linear-gradient(135deg,#FF6B6B,#FFD93D); }
+  .g-friend { background: linear-gradient(135deg,#1ABC9C,#2ECC71); }
+  .g-class { background: linear-gradient(135deg,#FF7F50,#FFB347); }
+  .g-public { background: linear-gradient(135deg,#3498DB,#9B59B6); }
+
+  /* small icon style inside badge */
+  .role-badge i { font-size:1.25rem; display:block; margin-bottom:6px; opacity:0.98; }
+
+  /* ---------- RIGHT PANEL: overview card ---------- */
+  .overview {
+    background: linear-gradient(180deg, rgba(255,255,255,0.95), rgba(255,255,255,0.9));
+    border-radius:14px;
+    padding:18px;
+    box-shadow: 0 10px 30px rgba(0,0,0,0.06);
+    position:sticky;
+    top:92px;
+  }
+  .overview h3 { margin:0 0 8px; font-size:1.05rem; }
+  .overview p { color:#5b5b78; margin:0; }
+
+  /* ---------- small screens ---------- */
+  @media (max-width: 900px) {
+    .hero { flex-direction:column-reverse; gap:18px; padding: 0 18px; }
+    .hero-left, .hero-right { width:100%; }
+    .roles-wrap { grid-template-columns: 40px 1fr; gap:16px 18px; }
+    .role-badge { display:none; } /* save space - keep dot + content */
+    .role-card { padding:14px; min-height:72px; }
+    .overview { position:relative; top:auto; }
+    .timeline::before { left:14px; }
+    .role-dot { transform: translateX(0); left:0; margin-left:0; }
+  }
+  @media (max-width:480px) {
+    .page-title { font-size:1.55rem; }
+    .role-title { font-size:1rem; }
+  }
+
+  /* small entrance stagger (JS will toggle .is-visible) */
+  .role-item.delay-0 { transition-delay: .04s; }
+  .role-item.delay-1 { transition-delay: .09s; }
+  .role-item.delay-2 { transition-delay: .18s; }
+  .role-item.delay-3 { transition-delay: .26s; }
+  .role-item.delay-4 { transition-delay: .34s; }
+
+  /* subtle hover glow on badge icons */
+  .role-badge:hover { filter: brightness(1.02) saturate(1.05); transform: translateY(-4px); transition: all .25s ease; }
+
+  /* footer small */
+  footer { text-align:center; padding:26px 12px; color:#8b8aa6; }
+</style>
+</head>
+<body>
+
+<!-- NAVBAR -->
+<nav class="navbar" role="navigation" aria-label="Main navigation">
+  <div class="logo"><i class="fa-solid fa-crown"></i> Raj Empire</div>
+
+  <div class="nav-right">
+    <div class="menu" id="navMenu" aria-hidden="false">
+      <a href="index.html"><i class="fa-solid fa-house"></i> Home</a>
+      <a href="#"><i class="fa-solid fa-info-circle"></i> About</a>
+      <a href="#"><i class="fa-solid fa-phone"></i> Contact</a>
+      <a href="#"><i class="fa-solid fa-headset"></i> Support</a>
+    </div>
+
+    <!-- dark toggle outside menu -->
+    <i class="fa-solid fa-moon" id="darkToggle" title="Toggle Dark Mode" aria-hidden="false"></i>
+
+    <!-- hamburger for small screens -->
+    <i class="fas fa-bars hamburger" id="hamburger" aria-label="Open menu" role="button"></i>
+  </div>
+</nav>
+
+<!-- HERO / ROLES -->
+<main class="hero" role="main">
+  <section class="hero-left" aria-labelledby="roles-heading">
+    <h1 id="roles-heading" class="page-title">Know the Roles of Raj Empire</h1>
+    <p class="page-sub">Each role has its place and privileges in the empire. Click, hover, or scroll — cards animate in as you move down. Built with your theme colors and responsive design.</p>
+
+    <div class="roles-wrap" id="rolesWrap">
+      <!-- role 1 -->
+      <div class="timeline" aria-hidden="true">
+        <div class="role-dot" style="background: linear-gradient(135deg,#6155D9,#BD45F8);"><i class="fa-solid fa-user-shield"></i></div>
+      </div>
+      <div class="role-item delay-0" data-role="admin">
+        <div class="role-card" role="article" aria-label="Admin role">
+          <div class="role-badge g-admin" aria-hidden="true">
+            <i class="fa-solid fa-user-shield"></i>
+            <div style="font-size:.78rem;margin-top:6px;">Admin</div>
+          </div>
+          <div class="role-content">
+            <div class="role-title">Admin</div>
+            <div class="role-desc">Full control of the empire — user management, settings, and system governance. Admins can create and revoke privileges, view analytics, and configure global preferences.</div>
+          </div>
+        </div>
+      </div>
+
+      <!-- role 2 -->
+      <div class="timeline" aria-hidden="true"></div>
+      <div class="role-item delay-1" data-role="family">
+        <div class="role-card" role="article" aria-label="Family role">
+          <div class="role-badge g-family" aria-hidden="true">
+            <i class="fa-solid fa-users"></i>
+            <div style="font-size:.78rem;margin-top:6px;">Family</div>
+          </div>
+          <div class="role-content">
+            <div class="role-title">Family</div>
+            <div class="role-desc">Trusted relatives with enhanced access — private streams, family-only events, and special resource pools. Family members enjoy priority support and exclusive content.</div>
+          </div>
+        </div>
+      </div>
+
+      <!-- role 3 -->
+      <div class="timeline" aria-hidden="true"></div>
+      <div class="role-item delay-2" data-role="friend">
+        <div class="role-card" role="article" aria-label="Friend role">
+          <div class="role-badge g-friend" aria-hidden="true">
+            <i class="fa-solid fa-user-friends"></i>
+            <div style="font-size:.78rem;margin-top:6px;">Friend</div>
+          </div>
+          <div class="role-content">
+            <div class="role-title">Friend</div>
+            <div class="role-desc">Trusted companions allowed to contribute, comment, and join shared activities. Friends can create collaborative posts and invite others to casual groups.</div>
+          </div>
+        </div>
+      </div>
+
+      <!-- role 4 -->
+      <div class="timeline" aria-hidden="true"></div>
+      <div class="role-item delay-3" data-role="classmate">
+        <div class="role-card" role="article" aria-label="Classmate role">
+          <div class="role-badge g-class" aria-hidden="true">
+            <i class="fa-solid fa-user-graduate"></i>
+            <div style="font-size:.78rem;margin-top:6px;">Classmate</div>
+          </div>
+          <div class="role-content">
+            <div class="role-title">Classmate</div>
+            <div class="role-desc">Peers and collaborators who share knowledge — study groups, resource sharing, and event co-hosting. Classmates can form study circles and host knowledge sessions.</div>
+          </div>
+        </div>
+      </div>
+
+      <!-- role 5 -->
+      <div class="timeline" aria-hidden="true"></div>
+      <div class="role-item delay-4" data-role="public">
+        <div class="role-card" role="article" aria-label="Public role">
+          <div class="role-badge g-public" aria-hidden="true">
+            <i class="fa-solid fa-globe"></i>
+            <div style="font-size:.78rem;margin-top:6px;">Public</div>
+          </div>
+          <div class="role-content">
+            <div class="role-title">Public</div>
+            <div class="role-desc">The general audience — can view public content, participate in open discussions, and attend public events. Public users have limited access to private features.</div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <aside class="hero-right">
+    <div class="overview" aria-label="Overview">
+      <h3>Role Highlights</h3>
+      <p><strong>Admin</strong> — full governance. <br>
+         <strong>Family</strong> — private, prioritized. <br>
+         <strong>Friend</strong> — collaborative and social. <br>
+         <strong>Classmate</strong> — learning & sharing. <br>
+         <strong>Public</strong> — general viewers.</p>
+      <hr style="margin:14px 0; border:none; height:1px; background:linear-gradient(90deg, rgba(97,85,217,0.12), rgba(189,69,248,0.12));">
+      <p style="font-size:.93rem;color:#6e6e8a;">Tip: Hover a card for micro-interactions. Use the dark mode icon at the top-right to see the theme shift.</p>
+    </div>
+  </aside>
+</main>
+
+<footer>
+  © <span id="year"></span> Raj Empire — Crafted with theme colors.
+</footer>
+
+<script>
+  // set year
+  document.getElementById('year').textContent = new Date().getFullYear();
+
+  // Dark mode icon behavior (icon outside menu)
+  const darkToggle = document.getElementById('darkToggle');
+  darkToggle.addEventListener('click', () => {
+    document.body.classList.toggle('dark-mode');
+    if (document.body.classList.contains('dark-mode')) {
+      darkToggle.classList.replace('fa-moon','fa-sun');
+    } else {
+      darkToggle.classList.replace('fa-sun','fa-moon');
+    }
+  });
+
+  // Hamburger mobile menu toggling (show/hide menu)
+  const hamburger = document.getElementById('hamburger');
+  const navMenu = document.getElementById('navMenu');
+  hamburger.addEventListener('click', () => {
+    navMenu.classList.toggle('show');
+  });
+
+  // Scroll reveal for role items (staggered)
+  const items = document.querySelectorAll('.role-item');
+  const observer = new IntersectionObserver((entries) => {
+    entries.forEach(entry => {
+      if (entry.isIntersecting) {
+        entry.target.classList.add('is-visible');
+      }
+    });
+  }, { threshold: 0.12 });
+
+  items.forEach((it) => {
+    observer.observe(it);
+  });
+
+  // Add small hover animation for role-badge icons to move slightly
+  document.querySelectorAll('.role-card').forEach(card => {
+    card.addEventListener('mouseenter', () => {
+      card.querySelectorAll('.role-badge').forEach(b => b.style.transform = 'translateY(-6px)');
+    });
+    card.addEventListener('mouseleave', () => {
+      card.querySelectorAll('.role-badge').forEach(b => b.style.transform = 'translateY(0)');
+    });
+  });
+
+  // Accessibility: allow toggling dark mode via keyboard on darkToggle
+  darkToggle.tabIndex = 0;
+  darkToggle.addEventListener('keydown', (e) => {
+    if (e.key === 'Enter' || e.key === ' ') {
+      e.preventDefault();
+      darkToggle.click();
+    }
+  });
+</script>
+</body>
+</html>

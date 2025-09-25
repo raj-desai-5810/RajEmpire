@@ -1,0 +1,273 @@
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700&display=swap');
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    scroll-behavior: smooth;
+}
+
+:root {
+    /* Global Variables */
+    --primary: #6155D9;
+    --secondery: #BD45F8;
+    --pri-grade: linear-gradient(to top left, var(--primary), var(--secondery));
+
+    /* Light Mode Colors */
+    --bg-light: #f9f9fb;
+    --ink-light: #2c2c54;
+    --card-bg-light: #fff;
+    --card-shadow-light: rgba(0, 0, 0, 0.05);
+
+    /* Dark Mode Colors (Upgraded) */
+    --bg-dark: #12131A;
+    /* page background */
+    --ink-dark: #E4E6EB;
+    /* main text color */
+    --card-bg-dark: #1F2029;
+    /* navbar, cards, containers */
+    --card-shadow-dark: rgba(0, 0, 0, 0.5);
+    /* deeper shadow for dark mode */
+}
+
+html {
+    height: 100%;
+    width: 100%;
+}
+
+body {
+    height: 100%;
+    width: 100%;
+    font-family: 'Poppins', sans-serif !important;
+    background: var(--bg-light);
+    color: var(--ink-light);
+    transition: background .4s, color 0.4s;
+
+}
+
+body.dark-mode {
+    background: var(--bg-dark);
+    color: var(--ink-dark);
+}
+
+
+/* Reset Bootstrap Focus */
+.form-control {
+    border-radius: 10px;
+    border: 1px solid #d1d5db;
+    padding: 12px 14px;
+    transition: .3s;
+    cursor: pointer;
+}
+
+.form-control:focus {
+    border-color: var(--primary);
+    box-shadow: 0 0 0 5px #6155d926;
+}
+
+/* Primary Button for Empire */
+.main-btn {
+    padding: 14px 36px;
+    border-radius: 50px;
+    border: none;
+    cursor: pointer;
+    background: var(--pri-grade);
+    color: #fff;
+    font-weight: 600;
+    font-size: 1rem;
+    letter-spacing: 0.5px;
+    transition: all 0.35s ease;
+    position: relative;
+    z-index: 1;
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
+}
+
+.main-btn:hover {
+    transform: translateY(-3px) scale(1.03);
+    box-shadow: 0 8px 25px rgba(0, 0, 0, 0.3);
+    filter: brightness(1.1);
+}
+
+.main-btn:active {
+    transform: scale(0.97);
+    box-shadow: 0 3px 10px rgba(0, 0, 0, 0.25);
+}
+
+.disable-btn {
+    background: linear-gradient(to top left, #6055d982, #bc45f882);
+    padding: 14px 36px;
+    border-radius: 50px;
+    border: none;
+    cursor: progress;
+    color: #fff;
+    font-weight: 600;
+    font-size: 1rem;
+    letter-spacing: 0.5px;
+    transition: all 0.35s ease;
+    position: relative;
+    z-index: 1;
+}
+
+.logo {
+    background-image: linear-gradient(to right, #ff00cc, #3333ff);
+    background-clip: text;
+    -webkit-text-fill-color: transparent;
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+/* ======================================= NAVBAR ======================================= */
+
+
+#bar {
+    display: none;
+}
+
+.empire-navbar {
+    background: var(--card-bg-light);
+    border-radius: 20px;
+    padding: 12px 30px;
+    box-shadow: 0 8px 20px rgba(0, 0, 0, 0.1);
+    transition: all 0.3s;
+    position: sticky;
+    z-index: 999;
+}
+
+body.dark-mode .empire-navbar {
+    background: var(--card-bg-dark);
+}
+
+.empire-navbar .logo {
+    font-size: 1.9rem;
+    font-weight: 700;
+}
+
+.empire-navbar .search-bar {
+    width: 300px;
+}
+
+.empire-navbar .search-bar input {
+    width: 100%;
+    padding: 8px 45px 8px 15px;
+    border-radius: 50px;
+    border: 1px solid #d1d5db;
+    transition: all 0.3s;
+}
+
+.empire-navbar .search-bar input:focus {
+    border-color: var(--primary);
+    box-shadow: 0 0 0 5px #6155d926;
+}
+
+.empire-navbar .search-bar .search-btn {
+    position: absolute;
+    right: 5px;
+    top: 50%;
+    transform: translateY(-50%);
+    border: none;
+    background: var(--pri-grade);
+    color: #fff;
+    border-radius: 50px;
+    padding: 6px 12px;
+    cursor: pointer;
+}
+
+.profile {
+    background: #6055d91c;
+    padding: 7px;
+    border-radius: 57px;
+}
+
+.empire-navbar .profile-img {
+    width: 30px;
+    height: 30px;
+    border-radius: 50%;
+    object-fit: cover;
+    border: 2px solid var(--primary);
+    transition: transform 0.3s;
+}
+
+.icon-btn {
+    color: #fff;
+    font-size: 1.2rem;
+    transition: all 0.3s;
+    background: var(--pri-grade);
+    text-align: center;
+    min-width: 2.5rem;
+    padding: 5px 10px;
+    border-radius: 50%;
+    border: none;
+    cursor: pointer;
+}
+
+.empire-navbar .profile span {
+    font-weight: 500;
+    font-size: .9rem;
+    color: var(--ink-light);
+}
+
+body.dark-mode .profile span {
+    color: var(--ink-dark);
+}
+
+@media(max-width: 800px) {
+    .search-bar {
+        display: none;
+    }
+}
+
+@media(max-width: 490px) {
+    .empire-navbar {
+        padding: 7px 12px !important;
+    }
+
+    .icon-btn {
+        min-width: 2.1rem;
+        font-size: 1rem;
+    }
+
+    .profile span {
+        font-size: .83rem !important;
+    }
+
+    .profile-img {
+        height: 25px;
+        width: 25px;
+    }
+
+    .empire-navbar .logo {
+        font-size: 1.4rem;
+    }
+}
+
+@media(max-width: 390px) {
+    .empire-navbar .logo {
+        font-size: 1.2rem;
+    }
+
+    .icon-btn {
+        min-width: 2rem;
+        font-size: .9rem;
+    }
+
+    .empire-navbar {
+        padding: 7px 9px !important;
+    }
+
+    .nav-icons {
+        gap: 4px !important;
+    }
+}
